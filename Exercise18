@@ -1,0 +1,43 @@
+**Prompt**
+
+Write a program that reads user input character string to array. Program will then convert lowercase
+characters to uppercase and uppercase to lowercase.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this program takes user input and prints
+//it replace the uppercase with lowercase and 
+//vice versa
+
+int main()
+{
+	//initializes variables
+	char input[50];
+	int i;
+	
+	//asks for and receives input
+	printf("Enter a String : ");
+	gets_s(input);
+
+	//loop that cycles through all letters leaving
+	//spaces as they are, but changing upper to lower
+	//case and vice versa
+	for (i = 0; input[i] != '\0'; i++) {
+		if (input[i] == ' ') {
+			putchar(input[i]);
+		}
+		else if (input[i] >= 'a' && input[i] <= 'z') {
+			putchar(input[i] - 32);
+		}
+		else {
+			putchar(input[i] + 32);
+		}
+	
+	}
+
+	getchar();
+	return 0;
+}
