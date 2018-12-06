@@ -1,0 +1,121 @@
+**Prompt**
+
+Write	a	program	that	asks	user	for	five	persons	name	and	phone number	and	saves	them	to	structures.	
+Every	structure	has	to	have	index	number	in	them	as	well,	that	is	assigned	automatically.	After	the	names	
+and	phone numbers	are	given,	program	will	print	out	all	the	index	numbers,	names	and	phone numbers	of	
+the	structures
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#define MAXLINELEN 50
+#pragma warning(disable:4996)
+//this is used to get rid of weird error
+
+//This code takes input from the user and stores it into a structure
+//then prints the given information with their assigned index numbers
+
+//structs for the individual people
+struct person1 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p1;
+
+struct person2 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p2;
+
+struct person3 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p3;
+
+struct person4 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p4;
+
+struct person5 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p5;
+
+
+int main()
+{
+	//initializes variable
+	int i = 0;
+
+	//ask for each person's name and phone number
+	printf("Please enter the first person's name:\n");
+	scanf("%s", p1.name);
+	printf("Please enter the first person's number:\n");
+	scanf("%s", p1.phoneNumber);
+	i = i + 1;
+	p1.index = i;
+
+	printf("Please enter the second person's name:\n");
+	scanf("%s", p2.name);
+	printf("Please enter the second person's number:\n");
+	scanf("%s", p2.phoneNumber);
+	i = i + 1;
+	p2.index = i;
+
+	printf("Please enter the third person's name:\n");
+	scanf("%s", p3.name);
+	printf("Please enter the third person's number:\n");
+	scanf("%s", p3.phoneNumber);
+	i = i + 1;
+	p3.index = i;
+
+	printf("Please enter the fourth person's name:\n");
+	scanf("%s", p4.name);
+	printf("Please enter the fourth person's number:\n");
+	scanf("%s", p4.phoneNumber);
+	i = i + 1;
+	p4.index = i;
+
+	printf("Please enter the fifth person's name:\n");
+	scanf("%s", p5.name);
+	printf("Please enter the fifth person's number:\n");
+	scanf("%s", p5.phoneNumber);
+	i = i + 1;
+	p5.index = i;
+
+	//prints information stored in structure
+	printf("\nThis is all of the information you entered:\n");
+	printf("Person 1 index, name and phone number:\n");
+	printf("%d\n",p1.index);
+	puts(p1.name);
+	puts(p1.phoneNumber);
+
+	printf("Person 2 index, name and phone number:\n");
+	printf("%d\n", p2.index);
+	puts(p2.name);
+	puts(p2.phoneNumber);
+
+	printf("Person 3 index, name and phone number:\n");
+	printf("%d\n", p3.index);
+	puts(p3.name);
+	puts(p3.phoneNumber);
+
+	printf("Person 4 index, name and phone number:\n");
+	printf("%d\n", p4.index);
+	puts(p4.name);
+	puts(p4.phoneNumber);
+
+	printf("Person 5 index, name and phone number:\n");
+	printf("%d\n", p5.index);
+	puts(p5.name);
+	puts(p5.phoneNumber);
+
+	return 0;
+}
