@@ -1,0 +1,37 @@
+**Prompt**
+
+Write	a	function	that	does	as	the	exercise	21,	but	the	file	printing	is	done	by	calling	a	function	for	the	
+printing	(function	needs	to	be	self	written).	Meaning	that	in	main	you	call	function	”ownFunction”	that	
+does	the	printing	to	the	file.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#pragma warning(disable:4996);
+//used to get rid of error with safe mode
+
+
+//This program does the same as the last lab, only calls a funtion
+//to do the work of opening, writing, and closing
+
+char ownFunction();
+
+int main(void)
+{
+	printf("Please press enter.\n");
+	//calls function
+	ownFunction();
+}
+
+//function to creat/open, write to, and close file
+char ownFunction() {
+	//used to get rid of error with safe mode
+	errno_t error;
+	FILE *filePointer;
+	error = fopen_s(&filePointer, "C:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\lab422.txt", "w+");
+	fprintf(filePointer, "Name: Amanda Kauppinen\nStudent number: 888888888");
+	fclose(filePointer);
+	return 0;
+}
