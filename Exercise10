@@ -1,0 +1,33 @@
+**Prompt**
+
+Write a program that reads a string of characters user inputs and removes all whitespace characters and
+prints the string back without the whitespace characters. Use getchar().
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code creates a program that reads 
+//a string. It removes all whitespace and
+//prints that to the console
+
+int main(void)
+{
+	//initializes input
+	int input;
+
+	//asks user for some words
+	printf("Please input some words:\n");
+
+	//removes spaces from user input and prints it
+	//back to the terminal
+	while (input = getchar()) {
+		if (input != ' ') {
+			putchar(input);
+		}
+	}
+
+	return 0;
+}
