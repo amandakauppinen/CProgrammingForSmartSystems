@@ -1,0 +1,71 @@
+**Prompt**
+
+Write a program that prints a menu where you have 4 selections. By selecting option 1 program will ask for
+temperature ranges lowest value, highest value and step size. By option 2 program will print user defined
+temperature range conversion Celsius <-> Farenheit. By selecting option 3 program will print temperature
+range conversion Celsius<->Kelvin. By selecting option 4 program will terminate. Menu needs to be
+reprinted after option 1, 2 and 3.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this code creates a program that reads 
+//a string. It the prints all of the 
+//given lowercase letters into uppercase
+
+int main(void)
+{
+	//initializes input, low and high celsius, and step
+	int input;
+	float lowCelsius = 0;
+	float highCelsius = 0;
+	float step = 0;
+
+	//puts the instructions and steps in a loop
+	do {
+		printf("\nPlease select an option between 1 and 4:\n");
+		printf("1: Input values for your range and step in Celsius\n");
+		printf("2: Convert all values to Fahrenheit\n");
+		printf("3: Convert all values to Kelvin\n");
+		printf("4: Quit\n");
+		scanf_s("%d", &input);
+
+		switch (input)
+		{
+		//asks for the values from the users
+		case 1:
+			printf("Please enter the lowest celsius value:\n");
+			scanf_s("%f", &lowCelsius);
+			printf("Please enter the highest celsius value:\n");
+			scanf_s("%f", &highCelsius);
+			printf("Please enter the increment of which you'd like to increase:\n");
+			scanf_s("%f", &step);
+			break;
+		//converts celsius to fahrenheit step
+		case 2:
+			lowCelsius = ((lowCelsius * 1.8) + 32);
+			highCelsius = ((highCelsius * 1.8) + 32);
+			step = (step * 1.8);
+			while (lowCelsius <= highCelsius) {
+				printf("%.2f ", lowCelsius);
+				lowCelsius = lowCelsius + step;
+			}
+			break;
+		//converts celsius to kelvin with step
+		case 3:
+			lowCelsius = (lowCelsius + 273.15);
+			highCelsius = (highCelsius + 273.15);
+			while (lowCelsius <= highCelsius) {
+				printf("%.2f ", lowCelsius);
+				lowCelsius = lowCelsius + step;
+			}
+			break;
+		//ends the program
+		case 4:
+			break;
+		}
+	} while (input != 4);
+	return 0;
+}
