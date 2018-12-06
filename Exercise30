@@ -1,0 +1,68 @@
+**Prompt**
+
+Write	a	program	that	reads	user	input	string	using	fgets()	function.	After	this,	program	will	ask if	the	user	
+wants	to	save	the	string	to	file	or	does	the	user	want	to	change	the	string	or	quit	without	saving.	If	user	
+wants	to	change	the	string	this	must	be	made	possible	by	asking	for	the	string	again.	After	this,	menu	will	
+be	printed	again	printing	the	choices available. Repeat	this	same	by	using	getchar()	and	putc().	Which	did	
+you	find	easier	to	use?
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#define MAXLINELEN 50
+#pragma warning(disable:4996)
+//this is used to get rid of weird error
+
+//this code takes a character input string
+//and gives the user choices on what to do with it
+//they can either store in in a file, rewrite, or quit
+
+int main()
+{
+	//initializes variables
+	char input[20];
+	int selection;
+
+	//opens file location, creates/rewrites existing file
+	FILE *filepointer;
+	filepointer = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab530.txt", "w+");
+
+	//asks for user input
+	printf("Please input a string:\n");
+	//getchar(input[20]);
+	fgets(input, 20, stdin);
+
+	//loop for switch case
+	do {
+		//asks for selection choice
+		printf("Please enter a selection:\n(1) Save the string to a file\n(2) Rewrite string\n(3) Quit\n");
+		scanf_s("%d",&selection);
+
+		switch (selection)
+		{
+		//stores input to string when user selects "1"
+		case 1:
+			//fputc(input[30], filepointer);
+			fputs(input, filepointer);
+			printf("Your string has been sent to the file\n\n");
+			break;
+		//prompts user to rewrite string, had to use two fgets
+		//or it would not work
+		case 2:
+			printf("Please rewrite the string:\n");
+			fgets(input, 20, stdin);
+			fgets(input, 20, stdin);
+			break;
+		//quits
+		case 3:
+			break;
+		}
+	} while (selection != 3);
+
+	//closes file
+	fclose(filepointer);
+	getchar();
+	return 0;
+}
