@@ -1,0 +1,68 @@
+**Prompt**
+
+Write a program that mimics Exercise15, but use getchar() for reading the values. Explain in comments
+what happens in the code in enough detail, that you do understand the code used!
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//This lab is similar to 315, only uses getchar()
+//to compare two given numbers and return the 
+//highest and the lowerst
+
+//changed functions to be that of char type
+char lowest(char num1, char num2);
+char highest(char num1, char num2);
+
+int main(void)
+{
+	//initiates variables
+	char num1;
+	char num2;
+	char low, high;
+
+	//asks to input the two numbers and assigns
+	//them to the appropriate variables
+	printf("Please enter a number: ");
+	num1 = getchar();
+	getchar();
+
+	printf("Please enter another number: ");
+	num2 = getchar();
+	getchar();
+
+	//calls the low and high functions
+	low = lowest(num1, num2);
+	high = highest(num1, num2);
+
+	//prints result of the function
+	//getchar() is used to get rid of text at the end of print
+	printf("\nThe lowest of the numbers is %c and the highest is %c", low, high);
+	getchar();
+
+	return 0;
+}
+
+//function to compare and sort integers, returns lowest
+char lowest(char num1, char num2) {
+	if (num1 < num2) {
+		return num1;
+	}
+	else {
+		num1 = num2;
+		return num1;
+	}
+}
+
+//function to compare and sort integers, returns highest
+char highest(char num1, char num2) {
+	if (num1 < num2) {
+		return num2;
+	}
+	else {
+		num2 = num1;
+		return num2;
+	}
+}
