@@ -1,0 +1,57 @@
+**Prompt**
+
+Write a program that has two functions: smaller and larger. Pass two int parameters to both functions.
+Smaller function will return the smaller value of the given two values and the larger will return the larger
+value. Print both values in the main program after the function calls. 
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this code creates a program that takes two 
+//values and returns both the highest and the
+//lowest numbers
+
+int lowest(int num1, int num2);
+int highest(int num1, int num2);
+
+int main(void)
+{
+	int num1 = 21;
+	int num2 = 5;
+	int low, high;
+
+	//calls the low and high functions
+	low = lowest(num1, num2);
+	high = highest(num1, num2);
+
+	//prints result of the function
+	//getchar() is used to get rid of text at the end of print
+	printf("The lowest of the numbers is %d and the highest is %d", low, high);
+	getchar();
+
+	return 0;
+}
+
+//function to compare and sort integers, returns lowest
+int lowest(int num1, int num2) {
+	if (num1 < num2) {
+		return num1;
+	}
+	else {
+		num1 = num2;
+		return num1;
+	}
+}
+
+//function to compare and sort integers, returns highest
+int highest(int num1, int num2) {
+	if (num1 < num2) {
+		return num2;
+	}
+	else {
+		num2 = num1;
+		return num2;
+	}
+}
