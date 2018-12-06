@@ -1,0 +1,65 @@
+**Prompt**
+
+Write a program where you save your birth date to variables and current date to another variables.
+Program needs to calculate your age based on the above information.
+
+**Solution**
+
+//This code creates a program that either has values stored already
+//or asks for input on your birthdate and today's date
+//it then calculates your age based on the stored/given numbers
+
+int main()
+{
+	//initiates birth/this date, month and year
+	int birthDate = 15;
+	int birthMonth = 1;
+	int birthYear = 1993;
+
+	int thisDate = 21;
+	int thisMonth = 8;
+	int thisYear = 2018;
+
+
+	//this bit of code is an alternate where you can manually
+	//enter the values rather than have them set
+	/*int birthDate;
+	int birthMonth;
+	int birthYear;
+
+	int thisDate;
+	int thisMonth;
+	int thisYear;
+	
+	printf("Please enter your birthdate: ");
+	scanf_s( "%d %d %d", &birthDate, &birthMonth, &birthYear);
+
+	getchar();
+
+	printf("Please enter your today's date: ");
+	scanf_s( "%d %d %d", &thisDate, &thisMonth, &thisYear);
+
+	getchar();*/
+	
+
+	//prints age base on comparison of this/birth month, date and year 
+	if (thisMonth < birthMonth) {
+		printf("Your age is %d",thisYear - (birthYear + 1));
+	}
+	else if (thisMonth == birthMonth) {
+		if (thisDate < birthDate) {
+			printf("Your age is %d", thisYear - (birthYear + 1));
+		}
+		else {
+			printf("Your age is %d", thisYear - birthYear);
+		}
+	}
+
+	else {
+		printf("Your age is %d", thisYear - birthYear);
+	}
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
