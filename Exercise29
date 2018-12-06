@@ -1,0 +1,61 @@
+**Prompt**
+
+Write	a	program	that	asks	user	to	input	two	strings	and	saves	them	to	a	file.	After	reading	the	1st	string	
+program	must	tell	how	long	the	given	string	was	and	ask	for	the	next.	The	second	sting	length must	match	
+to	the	1st.	After	the	strings	are	given	program	will	compare	the	strings	and	tell	which	characters	were	the	
+same	and print	these	characters	as	well	as	their	indexes	in	the	array
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#define MAXLINELEN 50
+#pragma warning(disable:4996)
+//this is used to get rid of weird error
+
+//this program writes two user-inputted
+//strings to a file, then compares the
+//strings character for character, and 
+//prints the shared characters from each
+//string with their matching ASCII values
+
+int main()
+{
+	//initializes variables
+	char input1[10];
+	char input2[10];
+	int i;
+
+	//opens file for writing purposes, creates/overwrites
+	FILE *filepointer;
+	filepointer = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab529.txt", "w+");
+
+	//asks for first string, gets input and stores to file
+	printf("Please input a string:\n");
+	fgets(input1, 10, stdin);
+	fputs(input1, filepointer);
+	
+	//relays string length
+	printf("String length: %d\n", (strlen(input1) - 1));
+	
+	//asks for second string, to match length of first
+	//gets input and stores to file
+	printf("Please input another string of the same length:\n");
+	fgets(input2, 10, stdin);
+	fputs(input2, filepointer);
+
+	//runs through elements of array, if they match
+	//in both strings, it will print the content with
+	//the ASCII value
+	for (i = 0; i < strlen(input1); i++) {
+		if (input1[i] == input2[i]) {
+			printf(" %c = %d \n", input1[i], input1[i]);
+		}
+	}
+
+	//close file
+	fclose(filepointer);
+	getchar();
+	return 0;
+}
