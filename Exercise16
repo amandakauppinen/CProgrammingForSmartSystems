@@ -1,0 +1,37 @@
+**Prompt**
+
+Write a program that reads user input character string to array. Print the characters as characters and their
+ASCII codes.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this program takes user input and prints
+//each individual character and its corresponding
+//ASCII value
+
+
+int main(void)
+{
+	//initializes variables
+	char input[50];
+	int result;
+	int i;
+
+	//asks user for input
+	printf("This program will show the letters and their ASCII values.\n");
+	printf("Please enter a sentence:\n");
+
+	//gets the input
+	gets_s(input);
+
+	//cycles through all letters, printing their ACSII values
+	for (i = 0; input[i] != '\0'; i++) {
+		printf(" %c = %d \n", input[i], input[i]);
+	}
+
+	getchar();
+	return 0;
+}
