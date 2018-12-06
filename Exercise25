@@ -1,0 +1,36 @@
+**Prompt**
+
+Fetch	file	”exe25.txt”	from	Oma.	Write	a	program,	that	converts	the	text	string	in	file	to	readable	text.	
+Characters	are	normal	ASCII	characters.	(Hint:	look	for	character	patters	such	as	newline	characters,	
+exclamations	marks,	question	marks	etc.)
+
+**Solution**
+
+//this program makes readable text of
+//the exe25 file
+
+int main()
+{
+	//errno_t error;
+	FILE *filepointer;
+
+	//opens file
+	filepointer = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\exe25.txt", "r");
+	//error = fopen_s(&filepointer, "c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\exe24.txt", "r");
+
+	//initializes variable
+	char mark;
+
+	//while loop that reads through file and subtracts
+	//4 from the ASCII code of each character
+	//to make the text readable
+	while ((mark = fgetc(filepointer)) != EOF) {
+		printf("%c",(mark-4));
+	}
+
+	//closes file
+	fclose(filepointer);
+
+	getchar();
+	return 0;
+}
