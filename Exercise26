@@ -1,0 +1,120 @@
+**Prompt**
+
+Write	a	program,	that	takes	5	text	files	(take	a	copy-paste	from	first	paragraph	Wikipedia	articles	for	
+Carbon,	Oxygen,	Platinum,	Titanium	and	Silicon).	Combine	all	the	5	files	to	a	single	file	so,	that	you	take	one	
+letter	at	a	time,	and	write	that	to	the	file.	Create	then	another	file,	that	re-assembles	the	5	files	to	their	
+original	shape	(to	different	filename	so	you	can	check!).
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#pragma warning(disable:4996);
+
+//this program takes 5 files, puts the contents into one large file
+//and then separates the contents to mimick the original format
+//of the 5 files
+
+int main(void)
+{
+	//initializes variables
+	char mark;
+	char newLine = '\n';
+
+	//opens all files in use
+	FILE *cFile;
+	cFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\carbon.txt", "r");
+	FILE *oFile;
+	oFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\oxygen.txt", "r");
+	FILE *pFile;
+	pFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\platinum.txt", "r");
+	FILE *sFile;
+	sFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\silicon.txt", "r");
+	FILE *tFile;
+	tFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\titanium.txt", "r");
+
+	FILE *togetherFile;
+	togetherFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\together.txt", "w+");
+
+	FILE *c2File;
+	c2File = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\carbon2.txt", "w+");
+	FILE *o2File;
+	o2File = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\oxygen2.txt", "w+");
+	FILE *p2File;
+	p2File = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\platinum2.txt", "w+");
+	FILE *s2File;
+	s2File = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\silicon2.txt", "w+");
+	FILE *t2File;
+	t2File = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\titanium2.txt", "w+");
+
+	//while loops to take content from individula files
+	//and puts them into the together file
+	while ((mark = fgetc(cFile)) != EOF) {
+		fputc(mark, togetherFile);
+	}
+	fputc(newLine, togetherFile);
+
+	while ((mark = fgetc(oFile)) != EOF) {
+		fputc(mark, togetherFile);
+	}
+	fputc(newLine, togetherFile);
+
+	while ((mark = fgetc(pFile)) != EOF) {
+		fputc(mark, togetherFile);
+	}
+	fputc(newLine, togetherFile);
+
+	while ((mark = fgetc(sFile)) != EOF) {
+		fputc(mark, togetherFile);
+	}
+	fputc(newLine, togetherFile);
+
+	while ((mark = fgetc(tFile)) != EOF) {
+		fputc(mark, togetherFile);
+	}
+	fputc(newLine, togetherFile);
+	
+	//closes all the files since I do not want to write to them anymore
+	fclose(cFile);
+	fclose(oFile);
+	fclose(pFile);
+	fclose(sFile);
+	fclose(tFile);
+	fclose(togetherFile);
+
+	//new pointer for together file since I only want to read from it this time
+	FILE *together2File;
+	together2File = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\Lab426\\together.txt", "r");
+
+	//while loops to read from together file and put them into the separate
+	//new files
+	while ((mark = fgetc(together2File)) != newLine) {
+		fputc(mark, c2File);
+	}
+
+	while ((mark = fgetc(together2File)) != newLine) {
+		fputc(mark, o2File);
+	}
+
+	while ((mark = fgetc(together2File)) != newLine) {
+		fputc(mark, p2File);
+	}
+
+	while ((mark = fgetc(together2File)) != newLine) {
+		fputc(mark, s2File);
+	}
+
+	while ((mark = fgetc(together2File)) != newLine) {
+		fputc(mark, t2File);
+	}
+
+	//close all files
+	fclose(c2File);
+	fclose(o2File);
+	fclose(p2File);
+	fclose(s2File);
+	fclose(t2File);
+	fclose(together2File);
+
+	return 0;
+}
