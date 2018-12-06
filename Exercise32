@@ -1,0 +1,47 @@
+**Prompt**
+
+Write	a	program	that	creates	a	structure,	where	one	can	save	name	and	phone number.	Program	will	ask	
+for	the	user	to	input	name	and	phone number	(and	insert	them	to	the	structure)	and	then	prints	out	the	
+given	name	and	phone number	from	the structure.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#define MAXLINELEN 50
+#pragma warning(disable:4996)
+//this is used to get rid of weird error
+
+//This code takes input from the user
+//and stores it into a structure
+//then prints the given information
+//to the terminal
+
+//structure with elements for name
+//and phone number
+struct storage {
+	char name[15];
+	char phoneNumber[15];
+} s;
+
+int main()
+{
+	//asks for user input, stores to struct
+	//element name
+	printf("Please enter your name:\n");
+	scanf("%s", s.name);
+
+	//"" to struct element phoneNumber
+	printf("Please enter your phone number:\n");
+	scanf("%s", s.phoneNumber);
+
+	//prints information stored in structure
+	printf("\nThis is your information:\n");
+	printf("Name: ");
+	puts(s.name);
+	printf("Phone number: ");
+	puts(s.phoneNumber);
+
+	return 0;
+}
