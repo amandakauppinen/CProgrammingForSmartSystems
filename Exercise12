@@ -1,0 +1,36 @@
+**Prompt**
+
+Write a program that reads user input and convers user input characters from lowercase to uppercase. Use
+getchar().
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this code creates a program that reads 
+//a string. It the prints all of the 
+//given lowercase letters into uppercase
+
+int main(void)
+{
+	//initializes input
+	int input;
+
+	//asks for user input
+	printf("This program will return only the characters you have written.\n");
+	printf("Please input some words:\n");
+
+	//compares user input with ASCII
+	//returns uppercase letters in place of lowercase
+	while (input = getchar()) {
+		if (input >= 'a' && input <= 'z') {
+			putchar(input - 32);
+		}
+		else {
+			putchar(input);
+		}
+	}
+
+	return 0;
+} 
