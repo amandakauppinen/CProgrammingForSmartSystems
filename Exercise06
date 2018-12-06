@@ -1,0 +1,43 @@
+**Prompt**
+
+Write	a	program	that	calculated	volume	of	a	ball	in	meters	(use	approximate	value	for	pi).	After	this	the	
+program	will	tell	how	many	liters	of	water	can	be	fit	inside	the	ball	and	how	many	US gallons	of	water	this	
+is.	Tell	the	value	with	maximum	accuracy	that	you	can	achieve	(don’t	get	crazy	here).
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code calculates areas of two squares (A,B)
+//calculates how many (B) squares can fit into
+//(A) square
+
+int main()
+{
+	//sets pi, radius, radius equation, meter,
+	//liter, and gallon values
+	float pi = 3.14159;
+	float radius = 1.0;
+	float radiusCubed = 0.0;
+	float volumeMeters = 0.0;
+	float volumeLiters = 0.0;
+	float volumeGallons = 0.0;
+
+	//equations for setting radius cubed, and volume in
+	//meters, liters, gallons
+	radiusCubed = radius * radius * radius;
+	volumeMeters = (1.333) * pi * radiusCubed;
+	volumeLiters = volumeMeters * 1000;
+	volumeGallons = volumeLiters * 0.64172;
+	
+	//prints all volumes
+	printf("The volume of the ball in meters is %f cubed meters\n",volumeMeters);
+	printf("The volume of the ball in liters is %f liters\n", volumeLiters);
+	printf("The volume of the ball in gallons is %f gallons", volumeGallons);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
