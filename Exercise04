@@ -1,0 +1,43 @@
+**Prompt**
+
+Write	a	program	that	calculates areas of	two	squares	(A	and	B).	After	this	the	program	will	tell	how	many	
+squares	B	can	fit	in	square	A.	Print	the	result	of	the	calculations	to	the	screen.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code calculates areas of two squares (a,b)
+//calculates how many (b) squares can fit into
+//(a) square
+
+int main()
+{
+	//sets a specific amount to each square side
+	//sets areas equal to 0 initially
+	//sets the amount of A squares into B to 0 initially
+	float squareSideA = 5.0;
+	float squareSideB = 2.0;
+	float areaA = 0.0;
+	float areaB = 0.0;
+	float aInB = 0.0;
+
+	//equations to calculate the area of squares A and B
+	areaA = squareSideA * squareSideA;
+	areaB = squareSideB * squareSideB;
+
+	//states that (x) amount of A's can fit into one B
+	//based on their areas
+	aInB = areaA / areaB;
+
+	//prints the areas and amounts of aInB
+	printf("The area of square A is %.2f\n",areaA);
+	printf("The area of square B is %.2f\n", areaB);
+	printf("%.2f B squares can fit into one A square.", aInB);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
