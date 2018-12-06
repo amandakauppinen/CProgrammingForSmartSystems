@@ -1,6 +1,6 @@
 **Prompt**
 
-Write	a	program that	prints	”I	am	a	student	with	ID	[student	ID]	in	classroom	[Classroom	name]
+Write a	program that prints ”I am a student with ID [student ID] in classroom [Classroom name]
 programming!”.
 
 **Solution**
@@ -14,7 +14,7 @@ programming!”.
 int main()
 {
 	//sets a specific student id and classroom name
-	int studentId = 1706231;
+	int studentId = 5555555;
 	char classroomName[] = "ETYA0143";
 
 	//prints my id and classroom name
