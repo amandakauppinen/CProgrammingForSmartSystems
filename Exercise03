@@ -1,0 +1,29 @@
+**Prompt**
+
+Write	a	program	that	calculates	area	of	square	(side	x	side)	and	prints	the	result	to	the	screen.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code calculates the area of a square
+
+int main()
+{
+	//this sets the side of the square equal to 5
+	//and sets the area equal to 0 initially
+	int squareSide = 5;
+	int area = 0;
+
+	//equation for the area of a square
+	area = squareSide * squareSide;
+
+	//prints the area of a square
+	printf("The area of the square is %d", area);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
