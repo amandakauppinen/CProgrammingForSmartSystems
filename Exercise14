@@ -1,0 +1,38 @@
+**Prompt**
+
+Write a program that passes two int type numbers to a function as parameters and returns their sum. 
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this code creates a program that uses a 
+//function to return the sum of 2 numbers
+
+int sum(int n1, int n2);
+
+int main(void)
+{
+	//initializing variables
+	int num1 = 3;
+	int num2 = 5;
+	int add;
+	
+	//calls for function sum
+	add = sum(num1,num2);
+
+	//prints result of the function
+	printf("The sum of %d and %d is %d", num1, num2, add);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
+
+//takes a and b, does sum calculation
+int sum(int num1, int num2) {
+	int num3;
+	num3 = num1 + num2;
+	return num3;
+}
