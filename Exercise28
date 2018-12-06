@@ -1,0 +1,33 @@
+**Prompt**
+
+Write	a	program,	that	reads	user	input	string	to	an	array	using	fgets()	function.	After	this, program	will	print	
+string	length and	the	string	itself.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+#define MAXLINELEN 50
+//#pragma warning(disable:4996);
+//this is used to get rid of weird error
+
+//program to print the length of given string
+
+int main()
+{
+	//initializes variables
+	char input[MAXLINELEN];
+	int i;
+	
+	//asks for string using fgets
+	printf("Please input a string:\n");
+	fgets(input, MAXLINELEN, stdin);
+
+	//displayes string length
+	printf("String length: %d\n",(strlen(input) - 1));
+	printf("String was: %s",input);
+	getchar();
+
+	return 0;
+}
