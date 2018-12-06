@@ -1,0 +1,59 @@
+**Prompt**
+
+Fetch	file	”exe24.txt”	from	Oma.	Write	a	program	that	reads	the	file	contents	and	tells	how	many	
+lowercase	letters,	uppercase	letters,	spaces	and	newline	characters	are	included	in	the	file.	Also	print	how	
+many	characters	did	not	fall	in	the	above	categories?
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+#pragma warning(disable:4996);
+
+//this program counts all of the different
+//types of characters in the exe24 file
+
+int main()
+{
+	//errno_t error;
+	FILE *filepointer;
+
+	//initializes all variables
+	int lowCount = 0;
+	int upCount = 0;
+	int spaceCount = 0;
+	int newCount = 0;
+	int otherCount = 0;
+	char mark;
+
+	//opens file
+	filepointer = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\exe24.txt","r");
+	//error = fopen_s(&filepointer, "c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\exe24.txt", "r");
+
+	//while loop that adds the counts
+	while ((mark = fgetc(filepointer)) != EOF) {
+		if (mark >= 'a' && mark <= 'z') {
+			lowCount++;
+		}
+		else if (mark >= 'A' && mark <= 'Z') {
+			upCount++;
+		}
+		else if (mark == ' ') {
+			spaceCount++;
+		}
+		else if (mark == '\n') {
+			newCount++;
+		}
+		else {
+			otherCount++;
+		}
+	}
+
+	//prints results to terminal and closes file
+	printf("There were: \n%d lowercase letters\n%d uppercase letters\n%d spaces\n%d newline characters\n%d other characters", lowCount, upCount, spaceCount, newCount, otherCount);
+	fclose(filepointer);
+	
+	getchar();
+	return 0;
+}
