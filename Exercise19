@@ -1,0 +1,61 @@
+**Prompt**
+
+Write a program that reads user input numbers to array. After numbers are in array program will sort them
+from smallest to largest print the initial and the sorted arrays after the sorting is done.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this program takes user input and sorts the
+//numbers from smalles to largest, finally
+//printing the original and new arrays
+
+int main()
+{
+	//initializes variables
+	int input[50];
+	int i;
+	int j;
+	int tmp;
+	int n;
+
+	//asks for and receives number amount
+	printf("How many numbers would you like to enter? ");
+	scanf_s("%d", &n);
+
+	//scans for inputted numbers
+	printf("Input %d numbers in the array :\n",n);
+	for (i = 0; i < n; i++)
+	{
+		scanf_s("%d", &input[i]);
+	}
+	
+	//prints array as it was given
+	printf("\nGiven array:\n");
+	for (i = 0; i < n; i++) {
+		printf("%d  ", input[i]);
+	}
+
+	//loop for comparing and sorting the numbers
+	for (i = 0; i < n; i++) {
+		for (j = i + 1; j < n; j++) {
+			if (input[j] < input[i]) {
+				tmp = input[i];
+				input[i] = input[j];
+				input[j] = tmp;
+			}
+		}
+	}
+
+	//prints the new sorted array
+	getchar();
+	printf("\nSorted array:\n");
+	for (i = 0; i < n; i++){
+		printf("%d  ",input[i]);
+	}
+
+	getchar();
+	return 0;
+}
