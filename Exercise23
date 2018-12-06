@@ -1,0 +1,39 @@
+**Prompt**
+
+Write	a	program	that	reads	user	input	one	character	at	a	time	and	writes	them	to	file	one	character	at	a	
+time. Program	will	terminate	on	some	specific	character	that	will	be	printed	out	to	the	user.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+#pragma warning(disable:4996)
+//used to get rid of error with safe mode
+
+//this code takes user input until they type in a #
+//and then writes it to a new file
+
+
+int main(void)
+{
+	//array to store user input
+	char input[50];
+
+	//opens the document, creates new one or overwrites existing
+	//errno_t error;
+	FILE *filepointer;
+	//error = fopen_s(&filePointer, "C:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\lab423.txt", "w+");
+	filepointer = fopen("C:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\lab423.txt", "w+");
+
+	//asks for input
+	printf("Please type something you would like to be written to the file. Program will terminate on #:\n");
+	
+	//takes all characters until # and puts it into the file, closes outside of loop
+	while ((input[50] = getchar()) != '#') {
+		fputc(input[50], filepointer);
+	}
+	fclose(filepointer);
+
+	return 0;
+}
