@@ -1,0 +1,42 @@
+**Prompt**
+
+Write a program that asks user to input his/her age. If the input age is under 18 program prints: ”You’re too
+young to drive”. If age is 18 or above, but below 65 program will print “You’re old enough to get a drivers
+license”. If age is 65 or above, program will print that “You’re likely to be retired”
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code creates a program that asks for the 
+//user's age, and gives a personalized message
+//based on the input
+int main()
+{
+	//initializes age
+	int age;
+
+	//asks for age input from user
+	printf("Please input your age: ");
+	scanf_s("%d", &age);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+
+	//gives personalized messages based on inputted age
+	if (age < 18) {
+		printf("You're too young to drive");
+	}
+	else if (age >= 18 && age < 65) {
+		printf("You're old enough to get a driver's license");
+	}
+	else {
+		printf("You're likely to be retired");
+	}
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
