@@ -1,0 +1,500 @@
+We were to pick a topic for a final project. I decided to go with a small text adventure. I realized after
+a good amount of time that this would take a lot more effort than I had realized, so my final product is nothing
+special and lacks many features. The files displaying the text from the game are not included.
+
+Code:
+
+#include "pch.h"
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#pragma warning(disable:4996)
+//#define RAND_MAX = 20
+//this is used to get rid of weird file error
+
+//all files used in this program are included in the zip file uploaded with my assignment
+//many of the comments are quite generic, as I heavily relied on the files to hold most
+//of the context for the game
+
+//These are all of the functions used in the whole program
+void roomOne();
+void roomTwo();
+void roomThree();
+void roomFour();
+int game(int coins);
+
+int main()
+{
+	//initialize the only variable used in the main
+	//I use a "mark" variable several times throughout the code
+	//but they are always different, not global
+	char mark;
+
+	//defines the file pointer and opens the file
+	FILE *begDialogue;
+	begDialogue = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\beginningDialogue.txt", "r");
+
+	//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+	while ((mark = fgetc(begDialogue)) != EOF) {
+		printf("%c", (mark));
+	}
+	fclose(begDialogue);
+
+	//this is where the program progresses through the functions, in the order
+	//that the player progresses through the storyline
+	roomOne();
+	roomTwo();
+	roomThree();
+	roomFour();
+
+	return 0;
+}
+
+//first function, correlating to the first room the player encounters in the game
+void roomOne() {
+	//initializing all of the variables that will be used in this function
+	char mark;
+	int stop = 1;
+	int selection;
+	int mouseCount = 1;
+	int keyCount = 0;
+
+	//loop to contain the switch case, so that after the player makes a selection, they are returned to the 
+	//initial list of options in order to make multiple selections. If the player moves onto the next room, stop
+	//is set to zero, so that the loop and function will be exited to the main function
+	do {
+		//defines pointers and opens all files to be used in this function
+		FILE *firstRoom;
+		FILE *boxFile;
+		FILE *holeFile;
+		FILE *firstDoorFile;
+		firstRoom = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\firstRoom.txt", "r");
+		boxFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\boxFile.txt", "r");
+		holeFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\holeFile.txt", "r");
+		firstDoorFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\firstDoorFile.txt", "r");
+
+		//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+		//asks for selection at the end to be used in the switch case 
+
+		while ((mark = fgetc(firstRoom)) != EOF) {
+			printf("%c", (mark));
+		}
+		scanf("%d", &selection);
+		//switch case to take user input, and give output based on their choice
+		switch (selection) {
+		//case for only printing a text file with context to the story
+		case 1:
+			//used to clear terminal
+			system("CLS");
+			while ((mark = fgetc(boxFile)) != EOF) {
+				printf("%c", (mark));
+			}
+			break;
+		//in this case, the user is given a "key" to be able to go onto next level. mouseCount is used so that after they player
+		//interacts with the "mouse" the first time, they are given a different interaction on the second time
+		case 2:
+			//used to clear terminal
+			system("CLS");
+			//mouseCount keeps record of if the player has interacted with the "mouse" previously. If they haven't, they are given this
+			//set of dialogue
+			if (mouseCount == 1) {
+				while ((mark = fgetc(holeFile)) != EOF) {
+					printf("%c", (mark));
+				}
+				keyCount += 1;
+				mouseCount -= - 1;
+			}
+			//if the player has already interacted with the "mouse", they have received a "key" and can no longer interact with the "mouse" again
+			else {
+				printf("\nThe mouse is no longer here.\n\n");
+			}
+			break;
+		//this case is for the "door" to the next room. If the player has acquired the "key" from the "mouse", then they can move onto the next
+		//room. If not, they are turned away and cannot move onto the next function (room)
+		case 3:
+			//if the player has received the key, a dialogue is shown and the stop is set to zero so that the loop and function will be exited
+			if (keyCount == 1) {
+				//used to clear terminal
+				system("CLS");
+				//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+				while ((mark = fgetc(firstDoorFile)) != EOF) {
+					printf("%c", (mark));
+				}
+				stop = 0;
+			}
+			//player is turned away from "door", until keyCount reaches 1
+			else {
+				system("CLS");
+				printf("\nYou can't seem to get the door open without the key.\n\n");
+			}
+			break;
+		default:
+			printf("Please enter a valid selection\n");
+		}
+
+		//closes all of the files
+		fclose(firstRoom);
+		fclose(boxFile);
+		fclose(holeFile);
+		fclose(firstDoorFile);
+	}	while (stop == 1);
+}
+
+//function for the second room the player will experience during the game
+void roomTwo() {
+	//initializes all variables used
+	char mark;
+	int stop = 1;
+	int exit = 1;
+	int selection;
+	int keyCount = 0;
+	int mermaidEncounter = 4;
+	int hermitEncounter = 1;
+	int deviceEncounter = 1;
+	
+	int betAmount;
+	int winAmount;
+	int comparison;
+	int totalCoins = 8;
+
+	//same as previous loop, contains the switch case, so that after the player makes a selection, they are returned to the 
+	//initial list of options in order to make multiple selections. If the player moves onto the next room, stop
+	//is set to zero, so that the loop and function will be exited to the main function
+	do {
+		//defines pointers and opens all files to be used in this function
+		FILE *secondRoom;
+		FILE *mermaidFile;
+		FILE *treasureFile;
+		FILE *deviceFile;
+		FILE *secondDoorFile;
+		secondRoom = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\secondRoom.txt", "r");
+		mermaidFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\mermaidFile.txt", "r");
+		treasureFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\treasureFile.txt", "r");
+		deviceFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\deviceFile.txt", "r");
+		secondDoorFile = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\secondDoorFile.txt", "r");
+
+		//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+		//asks for selection at the end to be used in the switch case
+		while ((mark = fgetc(secondRoom)) != EOF) {
+			printf("%c", (mark));
+		}
+		scanf("%d", &selection);
+
+		//switch case to take user input, and give output based on their choice
+		switch (selection) {
+			//first case used to advance game's storyline
+		case 1:
+			//used to clear terminal
+			system("CLS");
+			//mermaidEncounter is used like "mouseCount", keeps track of the encounter with the "mermaid" in the 
+			//story. If the player has already selected this option, they will be prompted with different
+			//encountera which is determined by the mermaidEncounter value
+			//player also obtains a "key", to be used to move onto next function
+			if (mermaidEncounter == 1) {
+				//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+				while ((mark = fgetc(mermaidFile)) != EOF) {
+					printf("%c", (mark));
+				}
+				keyCount += 1;
+				mermaidEncounter -= 1;
+			}
+			//evry time this selection is made, user is prompted with a different reaction from the "mermaid"
+			else if (mermaidEncounter == 2) {
+				printf("\nMermaid: How many times do we have to do this?? Go away!\n\n");
+				mermaidEncounter -= 1;
+			}
+			else if (mermaidEncounter == 3) {
+				printf("\nMermaid: I thought I told you to go away!\n\n");
+				mermaidEncounter -= 1;
+			}
+			else if (mermaidEncounter == 4) {
+				printf("\nMermaid: Ugh, what do you want? I'm not giving you the key, please go away.\n\n");
+				mermaidEncounter -= 1;
+			}
+			else {
+				printf("\nMermaid: I already gave you the key! Now leave me!\n\n");
+			}
+			break;
+			//similar to the last function, instead using hermitEncounter. This function only
+			//provides story filler
+		case 2:
+			//used to clear terminal
+			system("CLS");
+			//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+			if (hermitEncounter == 1) {
+				while ((mark = fgetc(treasureFile)) != EOF) {
+					printf("%c", (mark));
+				}
+				hermitEncounter -= -1;
+			}
+			//second encounter with "hermit"
+			else {
+				printf("\nCan't you please just leave the poor guy alone?!\n\n");
+			}
+			break;
+		//this case is more complicated, as it contains a gambling function in which the player
+		//can gamble with coins that they have
+		case 3:
+			//used to clear terminal
+			system("CLS");
+			//this keeps the player from going back into this function, thus restarting everything
+			if (deviceEncounter == 1) {
+				//again, keeps the player from entering this section of the program after having
+				//done so previously
+				while (deviceEncounter == 1) {
+					//prints the text from the device file
+					while ((mark = fgetc(deviceFile)) != EOF) {
+						printf("%c", (mark));
+					}
+					//this keeps the player from gambling with coins that are not in their inventory
+					//it sets the encounter to zero, so that it will exit each loop and go back to the 
+					//selection part of this function
+					if (totalCoins == 0) {
+						printf("\nYou cannot make bets when you have no coins\n\n");
+						deviceEncounter -= 1;
+					}
+					//if the player has coins, then it goes into the gambling part
+					else {
+						//asks the player if they want to make any bets. If yes, they go on
+						//to have the option to gamble. If no, it exits the loop
+						printf("\nWould you like to make any bets?\n(1) Yes\n(2) No\n");
+						scanf("%d", &selection);
+
+						//option for if the player decides to gamble their coins
+						if (selection == 1) {
+							//tells player their current amount of coins, and asks for how much they would like to bet
+							printf("\nYou have %d coins. How much would you like to bet?\n", totalCoins);
+							scanf("%d", &betAmount);
+							comparison = betAmount;
+
+							//this prevents the player from betting more coins than they have in their inventory
+							if (betAmount <= totalCoins) {
+								//this changes their total to be that without the bet money and sends the bet to the game function
+								totalCoins -= betAmount;
+								winAmount = game(betAmount);
+
+								//comparison is the original betting amount. when compared with the winnings from the function, it will
+								//tell if the bet was higher, lower or the same was what was won
+								if (comparison > winAmount) {
+									printf("\nOh no, you lost some coins!\n\n");
+								}
+								else if (comparison == winAmount) {
+									printf("\nYou didn't win or lose any coins.\n\n");
+								}
+								else {
+									printf("\nYou won some coins!\n\n");
+								}
+								//this adds the total coins leftover from before the bet, and the winnings to give a new total amount
+								totalCoins += winAmount;
+								printf("\nYou now have %d coins.\n\n", totalCoins);
+							}
+							else {
+								printf("\nPlease enter a valid amount of coins\n\n");
+							}
+						}
+						//this exits the gambling feature, and does not let the player return
+						else {
+							deviceEncounter -= 1;
+						}
+					}
+				}
+			}
+			//if the player returns after leaving the gambling section, they are told that the machine is 
+			//broken to prevent it being reset and losing the previous information
+			else {
+				printf("\nThe device appears to be broken now.\n\n");
+			}
+			break;
+		//this case is for the "door" to the next room. If the player has acquired the "key" from the "mermaid", then they can move onto the next
+		//room. If not, they are turned away and cannot move onto the next function (room)
+		case 4:
+			//used to clear terminal
+			system("CLS");
+			//if the player has received the key, a dialogue is shown and the stop is set to zero so that the loop and function will be exited
+			if (keyCount == 1) {
+				//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+				while ((mark = fgetc(secondDoorFile)) != EOF) {
+					printf("%c", (mark));
+				}
+				stop = 0;
+			}
+			//player is turned away unti keyCount is 1
+			else {
+				printf("\nYou can't open the door.\n\n");
+			}
+			break;
+
+		default:
+			printf("Please enter a valid selection\n");
+		}
+
+		//closes all files used in this function
+		fclose(secondRoom);
+		fclose(mermaidFile);
+		fclose(treasureFile);
+		fclose(deviceFile);
+		fclose(secondDoorFile);
+	} while (stop == 1);
+}
+
+void roomThree() {
+	//initializes all variables used in the function
+	char mark;
+	int pCheck;
+	int selection;
+	int skeletonHealth = 10;
+	int doNotReturn = 1;
+	int stop = 1;
+
+	//similar do-while loop as the others, with slight variations
+	do {
+		//defines file pointers and opens all files used in the function
+		FILE *thirdRoom;
+		FILE *skeletonBuddy;
+		FILE *skeletonBuddyVictory;
+		thirdRoom = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\thirdRoom.txt", "r");
+		skeletonBuddy = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\skeletonBuddy.txt", "r");
+		skeletonBuddyVictory = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\skeletonBuddyVictory.txt", "r");
+
+		//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+		//asks for selection at the end to be used in the switch case
+		while ((mark = fgetc(thirdRoom)) != EOF) {
+			printf("%c", (mark));
+		}
+		scanf("%d", &pCheck);
+
+		srand((unsigned int)time(NULL));
+		int random = rand() % 31;
+		//in the above code, the user is asked to guess a number between 1 and 30 that the "skeleton" is thinking of
+		//if the user chooses anything besides a random number generated (the "Skeleton"'s number), then they enter
+		//combat
+
+		//if player guesses the random number correctly, they are given a dialogue from a file, and obtains a "key"
+		//stop is set to zero, so that this will not be repeated again and will move onto the next function
+		if (pCheck == random) {
+			//used to clear terminal
+			system("CLS");
+			//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+			while ((mark = fgetc(skeletonBuddyVictory)) != EOF) {
+				printf("%c", (mark));
+			}
+			stop = 0;
+		}
+		//if the player offers a number less than 8, they are prompted to "fight" the "skeleton"
+		else {
+			//used to clear terminal
+			system("CLS");
+			printf("\nUh oh, looks like you didn't guess right :(\nYou must now fight the skeleton!\n\n");
+			//while loop, to make sure that the "skeleton"'s health cannot reach 0, contains options of which the player
+			//will attack
+			while (skeletonHealth > 4) {
+				//asks for type of attack the player would like to execute
+				printf("What will your attack be?\n(1) Punch Skeleton\n(2) Kick Skeleton\n(3) Shank Skeleton\n\n\n");
+				scanf("%d", &selection);
+
+				//switch loop for combat
+				switch (selection) {
+				//attack option which takes 1 off of the "skeleton"'s health
+				case 1:
+					printf("\nYou punched the Skeleton!\n\n");
+					skeletonHealth = skeletonHealth - 1;
+					break;
+				//attack option which takes 2 off of the "skeleton"'s health
+				case 2:
+					printf("\nYou kicked the Skeleton!\n\n");
+					skeletonHealth = skeletonHealth - 2;
+					break;
+				//attack option which takes 3 off of the "skeleton"'s health
+				case 3:
+					printf("\nYou shanked the skeleton!\n\n");
+					skeletonHealth = skeletonHealth - 3;
+					break;
+				}
+			}
+			//after the combat portion, player is given some text with context to the story
+			//stop is set to zero so that the program can exit to the main function
+			system("CLS");
+			while ((mark = fgetc(skeletonBuddy)) != EOF) {
+				printf("%c", (mark));
+			}
+			stop = 0;
+		}
+		//all files used in this function are closed
+		fclose(thirdRoom);
+		fclose(skeletonBuddy);
+		fclose(skeletonBuddyVictory);
+	} while (stop == 1);
+}
+
+//final function, used to end the game
+void roomFour() {
+	//initializes variables to be used in the function
+	int selection;
+	int mark;
+
+	//defines file pointers and opens all files to be used in the function
+	FILE *finalRoom;
+	FILE *trollDialogueOne;
+	FILE *trollDialogueTwo;
+	FILE *endText;
+	finalRoom = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\finalRoom.txt", "r");
+	trollDialogueOne = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\trollDialogueOne.txt", "r");
+	trollDialogueTwo = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\trollDialogueTwo.txt", "r");
+	endText = fopen("c:\\Users\\Am\\Documents\\School\\2ndYear\\C\\ProjectFinal\\endText.txt", "r");
+	
+	//loop for displaying the contents of the specific file, closes file after printing it to the terminal
+	//asks for selection at the end to be used in the switch case
+	while ((mark = fgetc(finalRoom)) != EOF) {
+		printf("%c", (mark));
+	}
+	scanf("%d", &selection);
+
+	//depending on what the player selects from the options, one of two text files will be shown
+	//they are unique to the player's selection
+	if (selection == 1) {
+		//used to clear terminal
+		system("CLS");
+		while ((mark = fgetc(trollDialogueOne)) != EOF) {
+			printf("%c", (mark));
+		}
+	}
+	else {
+		//used to clear terminal
+		system("CLS");
+		while ((mark = fgetc(trollDialogueTwo)) != EOF) {
+			printf("%c", (mark));
+		}
+	}
+
+	//loop for displaying the contents of the final text for the game
+	while ((mark = fgetc(endText)) != EOF) {
+		printf("%c", (mark));
+	}
+	//closes all files used in this function
+	fclose(finalRoom);
+	fclose(trollDialogueOne);
+	fclose(trollDialogueTwo);
+	fclose(endText);
+	//at the end of this function, it exits back to the main function and the game ends
+}
+
+//function for the gambling game, taking the bet as the parameter
+int game(int coins) {
+	//assigns a random integer, so that it will always be a different outcome
+	srand( (unsigned int) time(NULL));
+	int r = rand() % 21;
+
+	//these are various possibilities for the player to win, lose, or keep their bet the same
+	if (r < 5) {
+		coins += 5;
+	}
+	else if (r >= 5 && r < 15) {
+		coins = 0;
+	}
+	else if (r >= 10 && r < 15) {
+		coins += 10;
+	}
+	//returns the betAmount to be calculated with the total
+	return coins;
+}
