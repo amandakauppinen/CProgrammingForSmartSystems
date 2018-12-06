@@ -1,0 +1,27 @@
+**Prompt**
+
+Write	a	program	that	prints	out	date	and	temperature	for	today	and	tomorrow	(see	forecast	for	the	
+temperatures).	Print	1st	day’s information	on	the	1st	line	and	2nd	day’s information	on	the	next	line.
+
+**Solution**
+
+//this code prints the date and temperature
+//for today and tomorrow
+
+int main()
+{
+
+	//these set today's/ tomorrow's dates and temps
+	char todayDate[] = "21.08.18";
+	char todayTemp[] = "+13C";
+	char tomDate[] = "22.08.18";
+	char tomTemp[] = "+18C";
+
+	//these print the days' temps and dates on separate lines
+	printf("Today's date is %s and today's temperature is %s\n", todayDate, todayTemp);
+	printf("Tomorrow's date is %s and tomorrow's temperature is %s", tomDate, tomTemp);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
