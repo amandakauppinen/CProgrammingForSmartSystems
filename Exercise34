@@ -1,0 +1,141 @@
+**Prompt**
+
+Continue	from	the	previous	exercise,	but	now	user	can	define	by	index	number	from	which	of	the	structure	
+name	and	phone number	is	printed	(1st	names	and	phone numbers	are	asked	for,	then	program	prints	list	
+of	index	numbers	and	then	user	can	select	which	ones	to	print	out).
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#define MAXLINELEN 50
+#pragma warning(disable:4996)
+//this is used to get rid of weird error
+
+//This code takes input from the user and stores it into a structure
+//then prints the given information with their assigned index numbers
+
+//structs for the individual people
+struct person1 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p1;
+
+struct person2 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p2;
+
+struct person3 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p3;
+
+struct person4 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p4;
+
+struct person5 {
+	int index;
+	char name[15];
+	char phoneNumber[15];
+} p5;
+
+
+int main()
+{
+	//initializes variables
+	int i = 0;
+	int selection;
+
+	//asks for person's information
+	printf("Please enter the first person's name: ");
+	scanf("%s", p1.name);
+	printf("Please enter the first person's number: ");
+	scanf("%s", p1.phoneNumber);
+	i = i + 1;
+	p1.index = i;
+
+	printf("Please enter the second person's name: ");
+	scanf("%s", p2.name);
+	printf("Please enter the second person's number: ");
+	scanf("%s", p2.phoneNumber);
+	i = i + 1;
+	p2.index = i;
+
+	printf("Please enter the third person's name: ");
+	scanf("%s", p3.name);
+	printf("Please enter the third person's number: ");
+	scanf("%s", p3.phoneNumber);
+	i = i + 1;
+	p3.index = i;
+
+	printf("Please enter the fourth person's name: ");
+	scanf("%s", p4.name);
+	printf("Please enter the fourth person's number: ");
+	scanf("%s", p4.phoneNumber);
+	i = i + 1;
+	p4.index = i;
+
+	printf("Please enter the fifth person's name: ");
+	scanf("%s", p5.name);
+	printf("Please enter the fifth person's number: ");
+	scanf("%s", p5.phoneNumber);
+	i = i + 1;
+	p5.index = i;
+	
+	//asks for which index user would like to see
+	printf("\n\nPlease select the information you would like to see\n");
+	printf("by choosing a case number (1-5):");
+	scanf("%d", &selection);
+
+	printf("\n\n");
+
+	//if statements to select index based on user input
+	if (selection == p1.index) {
+		printf("You chose index 1.\n");
+		printf("Person 1 name and phone number:\n");
+		puts(p1.name);
+		puts(p1.phoneNumber);
+	}
+
+	else if (selection == p2.index) {
+		printf("You chose index 2.\n");
+		printf("Person 2 name and phone number:\n");
+		puts(p2.name);
+		puts(p2.phoneNumber);
+	}
+
+	else if (selection == p3.index) {
+		printf("You chose index 3.\n");
+		printf("Person 3 name and phone number:\n");
+		puts(p3.name);
+		puts(p3.phoneNumber);
+	}
+
+	else if (selection == p4.index) {
+		printf("You chose index 4.\n");
+		printf("Person 4 name and phone number:\n");
+		puts(p4.name);
+		puts(p4.phoneNumber);
+	}
+
+	else if (selection == p5.index) {
+		printf("You chose index 5.\n");
+		printf("Person 5 name and phone number:\n");
+		puts(p5.name);
+		puts(p5.phoneNumber);
+	}
+
+	else {
+		printf("That is an invalid selection.");
+	}
+	
+	return 0;
+}
