@@ -1,0 +1,34 @@
+**Prompt**
+
+Write a program that reads user input and tells which of the characters were letters (a-z, A-Z). Use
+getchar().
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code creates a program that reads 
+//a string. It the prints all of the 
+//characters that are letters
+
+int main(void)
+{
+	//initializes input
+	int input;
+
+	//asks for user input
+	printf("This program will return only the characters you have written.\n");
+	printf("Please input some words:\n");
+
+	//compares user input with ASCII
+	//returns only the characters that are letters
+	while (input = getchar()) {
+		if ((input >= 'a' && input <= 'z') || (input >= 'A' && input <= 'Z')) {
+			putchar(input);
+		}
+	}
+
+	return 0;
+}
