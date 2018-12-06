@@ -1,0 +1,32 @@
+**Prompt**
+
+Write	a	program	that	converts	feet	(ft)	to	meters	(m).	Give result	with precision	of	2	numbers	after	the	
+decimal	marker.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+
+//this code calculates areas of two squares (a,b)
+//calculates how many (b) squares can fit into
+//(a) square
+
+int main()
+{
+	//this sets a specific amount of feet
+	//also sets the converter to 0 initially
+	float feet = 5.0;
+	float meterConverter = 0.0;
+
+	//conversion for feet to meters
+	meterConverter = feet * 0.3048;
+
+	//prints conversion from feet to meters
+	printf("If you have %.2f feet, you will have %.2f meters",feet, meterConverter);
+
+	//getchar() is used to get rid of text at the end of print
+	getchar();
+	return 0;
+}
