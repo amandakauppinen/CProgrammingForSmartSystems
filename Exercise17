@@ -1,0 +1,49 @@
+**Prompt**
+
+Write a program that reads user input character string to array. After this program will tell how many
+characters were lowercase and how many were uppercase characters. Use a function to print out the total
+values of characters by passing the count to the printing function.
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+
+//this program takes user input and counts
+//how many upper/lowercase letters it contains
+
+int main()
+{
+	//initializes the variables
+	char inputString[50];
+	int lowCount;
+	int upCount;
+	int i;
+
+	//asks for and receives input
+	printf("Enter a String : ");
+	gets_s(inputString);
+
+	//sets initial values to be 0
+	lowCount = 0;
+	upCount = 0;
+
+	//loop to add one to either upper or lower count
+	//every time it encocunters a character
+	for (i = 0; inputString[i] != '\0'; i++) {
+
+		if (inputString[i] >= 'a' && inputString[i] <= 'z') { 
+			lowCount++; 
+		}
+		else {
+			upCount++; 
+		}
+	}
+
+	//prints results
+	printf("\nThere were %d lower case letters.\n",lowCount);
+	printf("There were %d upper case letters.\n",upCount);
+
+	getchar();
+	return 0;
+}
