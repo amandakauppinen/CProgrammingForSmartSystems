@@ -1,0 +1,30 @@
+**Prompt**
+
+Write	a	program	that	prints	your	name	and	student	number	to	file
+
+**Solution**
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+//#pragma warning(disable:4996);
+//this is used to get rid of weird error
+
+//This program writes my name and student number to a file
+
+int main(void)
+{
+	//used to get rid of error with safe mode
+	errno_t error;
+
+	printf("Please press enter.");
+	//creates and opens file, overwrites if already exists
+	FILE *filePointer;
+	error = fopen_s(&filePointer, "C:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\lab421.txt", "w+");
+	
+	//filePointer = fopen_s("C:\\Users\\Am\\Documents\\School\\2ndYear\\C\\Exercises\\filePractice\\lab421.txt", "w+");
+	
+	//writes name and student number to the file, then closes
+	fprintf(filePointer, "Name: Amanda Kauppinen\nStudent number: 88888888");
+	fclose(filePointer);
+}
